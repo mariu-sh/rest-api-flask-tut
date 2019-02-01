@@ -16,10 +16,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 # JWT CONFIG
 app.secret_key = 'jose'
 jwt = JWT(app, authenticate, identity) # /auth
